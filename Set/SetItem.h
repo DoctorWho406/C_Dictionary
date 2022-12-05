@@ -16,4 +16,6 @@ struct set_table {
     set_node_t **nodes;
     size_t hashmap_size;
 };
+
+#undef INIT_SET_NODE
 #endif

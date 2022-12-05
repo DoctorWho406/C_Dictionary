@@ -4,7 +4,6 @@
 #define EXPORTFUNC
 #endif
 
-#define INIT_SET_NODE
 #include "SetItem.h"
 
 EXPORTFUNC set_table_t *set_new(const size_t hasmap_size);
