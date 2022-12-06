@@ -2,7 +2,7 @@
 #define INIT_SET_NODE
 #include "SetItem.h"
 
-typedef struct dictionary_node{
+typedef struct dictionary_node {
     set_node_t node;
     void *value;
 } dictionary_node_t;
