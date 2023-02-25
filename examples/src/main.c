@@ -1,14 +1,18 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include "IntItem.h"
-#include "Dictionary.h"
+#include "int_item.h"
+#include "dictionary.h"
 
 #define to_table (dictionary_table_t *)
 #define to_node (dictionary_node_t *)
 #define to_int_item (int_item_t *)
 
 int main() {
-    dictionary_table_t *dictionary = dictionary_table_new(2);
+    dictionary_table_t *dictionary;
+    if(dictionary_table_create(&dictionary, 2) != 0) {
+        puts("Erorre nella creazione della tabella");
+        return -1;
+    }
 
     dictionary_table_insert(dictionary, to_node int_item_new("Hello", 0), 5);
     dictionary_table_insert(dictionary, to_node int_item_new("World", 1), 5);
@@ -78,4 +82,6 @@ int main() {
             }
         }
     }
+
+    dictionary_table_destroy(dictionary);
 }

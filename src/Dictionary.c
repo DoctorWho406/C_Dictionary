@@ -1,33 +1,26 @@
-#include <stdlib.h>
 #include <string.h>
-#include "Set.h"
-#include "Dictionary.h"
+#include "dictionary.h"
 
-dictionary_table_t *dictionary_table_new(const size_t hashmap_size) {
-    dictionary_table_t *table = (dictionary_table_t *)set_table_new(hashmap_size);
-    if (!table) {
-        return NULL;
+int dictionary_table_create(dictionary_table_t **table, const size_t hashmap_size) {
+    if (set_table_create((set_table_t **)table, hashmap_size) != 0) {
+        return -1;
     }
-    table->collisions = 0;
-    return table;
+    (*table)->collisions = 0;
+    return 0;
 }
 
 dictionary_node_t *dictionary_table_search(dictionary_table_t *table, dictionary_node_t *item, const size_t size_of_key) {
-    set_node_t *node = set_table_search(&(table->table), &(item->node), size_of_key);
-    if (node) {
-        return (dictionary_node_t *)node;
-    }
-    return NULL;
+    return (dictionary_node_t *)set_table_search(&(table->table), &(item->node), size_of_key);
 }
 
-dictionary_node_t *dictionary_table_insert(dictionary_table_t *table, dictionary_node_t *item, const size_t size_of_key) {
-    return (dictionary_node_t *)set_table_insert(&(table->table), &(item->node), size_of_key);
+int dictionary_table_insert(dictionary_table_t *table, dictionary_node_t *item, const size_t size_of_key) {
+    return set_table_insert(&(table->table), &(item->node), size_of_key);
 }
 
 dictionary_node_t *dictionary_table_remove(dictionary_table_t *table, dictionary_node_t *item, const size_t size_of_key) {
-    set_node_t *node = set_table_remove(&(table->table), &(item->node), size_of_key);
-    if (node) {
-        return (dictionary_node_t *)node;
-    }
-    return NULL;
+    return (dictionary_node_t *)set_table_remove(&(table->table), &(item->node), size_of_key);
+}
+
+void dictionary_table_destroy(dictionary_table_t *table) {
+    set_table_destroy(&(table->table));
 }

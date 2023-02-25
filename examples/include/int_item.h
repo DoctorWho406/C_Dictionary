@@ -1,4 +1,4 @@
-#include "Dictionary.h"
+#include "dictionary.h"
 
 typedef struct int_item {
     dictionary_node_t node;
