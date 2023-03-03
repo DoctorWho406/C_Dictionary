@@ -15,6 +15,7 @@ IF %ERRORLEVEL% EQU 0 (
     MD "%BAT_BASE_PATH%dictionary\include"
     
     COPY /Y "%BAT_BASE_PATH%include\*.h" "%BAT_BASE_PATH%dictionary\include"
-
     COPY /Y "%BAT_BASE_PATH%library\set\include\*.h" "%BAT_BASE_PATH%dictionary\include"
+
+    COPY /Y "%BAT_BASE_PATH%library\set\lib\*.dll" "%BAT_BASE_PATH%dictionary\lib"
 )
